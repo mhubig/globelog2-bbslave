@@ -20,17 +20,18 @@ run     apt-get install -y -q diffstat
 run     apt-get install -y -q python-dev
 run     apt-get install -y -q python-pip
 run     apt-get install -y -q supervisor
+run     apt-get install -y -q openssh-server
 run     apt-get install -y -q build-essential
 
 ## setup buildbot slave
+run     pip install django-dotenv
 run     pip install buildbot-slave
-run     mkdir -p /data/log
+run     mkdir -p /data
 add     ./slave  /data/slave
 add     ./_env   /data/slave/.env
 
-## setup supervisor
-add     ./supervisor/supervisord.conf /etc/supervisor/supervisord.conf
-add     ./supervisor/conf.d/buildbot.conf /etc/supervisor/conf.d/buildbot.conf
+## add supervisord scripts
+add     ./supervisord/ /etc/supervisor/conf.d/
 
 ## run command
 volume ["/data"]
