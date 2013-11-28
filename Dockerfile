@@ -25,17 +25,12 @@ run     apt-get install -y -q build-essential
 ## setup buildbot slave
 run     pip install buildbot-slave
 run     mkdir -p /data/log
-add     ./slave /data/slave
+add     ./slave  /data/slave
+add     ./_env   /data/slave/.env
 
 ## setup supervisor
 add     ./supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 add     ./supervisor/conf.d/buildbot.conf /etc/supervisor/conf.d/buildbot.conf
-
-## environment
-env     BUILDBOT_HOST   $BUILDBOT_HOST
-env     BUILDBOT_PORT   $BUILDBOT_PORT
-env     BUILDBOT_NAME   $BUILDBOT_NAME
-env     BUILDBOT_PASS   $BUILDBOT_PASS
 
 ## run command
 volume ["/data"]
