@@ -28,7 +28,7 @@ run     pip install django-dotenv
 run     pip install buildbot-slave
 run     mkdir -p /data
 add     ./slave  /data/slave
-add     ./_env   /data/slave/.env
+add     ./dotenv /data/slave/.env
 
 ## add supervisord scripts
 add     ./supervisord/ /etc/supervisor/conf.d/
