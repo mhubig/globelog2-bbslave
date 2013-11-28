@@ -1,7 +1,7 @@
 import os
-import os.environ as env
-
 import dotenv
+from os import environ as env
+
 dotenv.read_dotenv()
 
 from twisted.application import service
