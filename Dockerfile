@@ -17,6 +17,7 @@ run     apt-get install -y -q unzip
 run     apt-get install -y -q texinfo
 run     apt-get install -y -q chrpath
 run     apt-get install -y -q diffstat
+run     apt-get install -y -q python-dev
 run     apt-get install -y -q python-pip
 run     apt-get install -y -q supervisor
 run     apt-get install -y -q build-essential
