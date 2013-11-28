@@ -33,6 +33,9 @@ add     ./dotenv /data/slave/.env
 ## add supervisord scripts
 add     ./supervisord/ /etc/supervisor/conf.d/
 
-## run command
+## exposed ports & volumes
 volume ["/data"]
-ENTRYPOINT ["/usr/bin/supervisord"]
+expose 22
+
+## run command
+cmd ["/usr/bin/supervisord", "-n"]
