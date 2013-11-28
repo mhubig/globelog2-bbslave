@@ -23,6 +23,10 @@ run     apt-get install -y -q supervisor
 run     apt-get install -y -q openssh-server
 run     apt-get install -y -q build-essential
 
+## add some folders
+run     mkdir -p /var/run/sshd
+run     mkdir -p /var/log/supervisor
+
 ## setup buildbot slave
 run     pip install django-dotenv
 run     pip install buildbot-slave
