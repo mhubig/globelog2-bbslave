@@ -1,0 +1,3 @@
+BUILDBOT_HOST='ci.imko.de'
+BUILDBOT_PORT='9989'
+BUILDBOT_PASS='geheim'
