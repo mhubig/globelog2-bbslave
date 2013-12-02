@@ -1,11 +1,11 @@
 import os
 import dotenv
+
 from os import environ as env
-
-dotenv.read_dotenv()
-
 from twisted.application import service
 from buildslave.bot import BuildSlave
+
+dotenv.inject()
 
 basedir = r'.'
 rotateLength = 10000000
