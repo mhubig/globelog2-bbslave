@@ -35,7 +35,7 @@ try:
     from twisted.python.logfile import LogFile
     from twisted.python.log import ILogObserver, FileLogObserver
     logfile = LogFile.fromFullPath(bbslave_logdir,
-                                   rotateLength=bbslave_rotate_length
+                                   rotateLength=bbslave_rotate_length,
                                    maxRotatedFiles=bbslave_max_rotated_files)
     application.setComponent(ILogObserver, FileLogObserver(logfile).emit)
 except ImportError:
