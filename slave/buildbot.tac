@@ -5,7 +5,7 @@ from os import environ as env
 from twisted.application import service
 from buildslave.bot import BuildSlave
 
-dotenv.inject()
+dotenv.read_dotenv()
 
 basedir = r'.'
 rotateLength = 10000000
