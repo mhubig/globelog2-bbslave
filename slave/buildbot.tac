@@ -24,12 +24,13 @@ bbslave_allow_shutdown = None
 
 ## bbmaster settings
 bbmaster_host = os.environ.get('BUILDBOT_HOST', 'ci.imko.de')
-bbmaster_port = os.environ.get('BUILDBOT_PORT', 9989)
-bbmaster_pwd  = os.environ.get('BUILDBOT_PWD', 'geheim')
+bbmaster_port = int(os.environ.get('BUILDBOT_PORT', '9989'))
+bbmaster_pass = os.environ.get('BUILDBOT_PASS', 'geheim')
 
 ## create the application
 application = service.Application('buildslave')
 
+## add logging
 try:
     from twisted.python.logfile import LogFile
     from twisted.python.log import ILogObserver, FileLogObserver
@@ -38,12 +39,13 @@ try:
                                    maxRotatedFiles=bbslave_max_rotated_files)
     application.setComponent(ILogObserver, FileLogObserver(logfile).emit)
 except ImportError:
-    # probably not yet twisted 8.2.0 and beyond, can't set log yet
     pass
 
-s = BuildSlave(bbmaster_host, bbmaster_port, bbslave_name, bbmaster_pwd,
+## create the slave
+s = BuildSlave(bbmaster_host, bbmaster_port, bbslave_name, bbmaster_pass,
                bbslave_basedir, bbslave_keepalive, bbslave_usepty,
                umask=bbslave_umask, maxdelay=bbslave_maxdelay,
                allow_shutdown=bbslave_allow_shutdown)
 
+## als add slave to application
 s.setServiceParent(application)
