@@ -2,6 +2,7 @@
 # vi: set ft=python :
 
 import os
+import sys
 from os import environ as env
 from twisted.application import service
 from buildslave.bot import BuildSlave

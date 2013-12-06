@@ -19,27 +19,27 @@ RUN     apt-get install -y -q chrpath
 RUN     apt-get install -y -q diffstat
 RUN     apt-get install -y -q python-dev
 RUN     apt-get install -y -q python-pip
-RUN     apt-get install -y -q supervisor
 RUN     apt-get install -y -q openssh-server
 RUN     apt-get install -y -q build-essential
 
 ## add some folders
 RUN     mkdir -p /var/run/sshd
-RUN     mkdir -p /var/log/supervisor
 
 ## set a password
 RUN     echo "root:root" | chpasswd
 
 ## setup buildbot slave
 RUN     pip install buildbot-slave
+RUN     pip install fabric
 RUN     mkdir -p /data
-ADD     ./slave  /data/slave
-
-## ADD supervisord scripts
-ADD     ./supervisord/ /etc/supervisor/conf.d/
+ADD     ./slave /data/slave
+ADD     ./fabfile.py /data
 
 ## expose ssh port
 EXPOSE  22
 
+## set the workdir
+WORKDIR /data
+
 ## RUN command
-CMD     ["/usr/bin/supervisord", "-n"]
+CMD     ["/usr/local/bin/fab", "run"]
