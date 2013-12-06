@@ -31,11 +31,9 @@ RUN     mkdir -p /var/log/supervisor
 RUN     echo "root:root" | chpasswd
 
 ## setup buildbot slave
-RUN     pip install django-dotenv
 RUN     pip install buildbot-slave
 RUN     mkdir -p /data
 ADD     ./slave  /data/slave
-ADD     ./dotenv /data/slave/.env
 RUN     buildslave upgrade-slave /data/slave
 
 ## ADD supervisord scripts

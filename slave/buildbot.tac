@@ -2,13 +2,17 @@
 # vi: set ft=python :
 
 import os
-import dotenv
-
+from os import environ as env
 from twisted.application import service
 from buildslave.bot import BuildSlave
 
-## load the dotenv file
-dotenv.read_dotenv()
+## bbmaster setting
+BUILDBOT_ADDR = env.get('BUILDBOT_ADDR', False)
+BUILDBOT_PORT = env.get('BUILDBOT_PORT', False)
+BUILDBOT_PASS = env.get('BUILDBOT_PASS', False)
+
+if False in (BUILDBOT_ADDR, BUILDBOT_PASS, BUILDBOT_PORT):
+    sys.exit(1)
 
 ## bbslave settings
 bbslave_basedir = os.path.abspath(os.path.dirname(__file__))
@@ -21,11 +25,6 @@ bbslave_usepty = 0
 bbslave_umask = None
 bbslave_maxdelay = 300
 bbslave_allow_shutdown = None
-
-## bbmaster settings
-bbmaster_host = os.environ.get('BUILDBOT_ADDR', 'ci.imko.de')
-bbmaster_port = int(os.environ.get('BUILDBOT_PORT', '9989'))
-bbmaster_pass = os.environ.get('BUILDBOT_PASS', 'geheim')
 
 ## create the application
 application = service.Application('buildslave')
@@ -42,7 +41,7 @@ except ImportError:
     pass
 
 ## create the slave
-s = BuildSlave(bbmaster_host, bbmaster_port, bbslave_name, bbmaster_pass,
+s = BuildSlave(BUILDBOT_ADDR, int(BUILDBOT_PORT), bbslave_name, BUILDBOT_PASS,
                bbslave_basedir, bbslave_keepalive, bbslave_usepty,
                umask=bbslave_umask, maxdelay=bbslave_maxdelay,
                allow_shutdown=bbslave_allow_shutdown)
