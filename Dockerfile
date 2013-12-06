@@ -41,9 +41,7 @@ RUN     buildslave upgrade-slave /data/slave
 ## ADD supervisord scripts
 ADD     ./supervisord/ /etc/supervisor/conf.d/
 
-#
-#exposed ports & volumes
-VOLUME  ["/data"]
+## expose ssh port
 EXPOSE  22
 
 ## RUN command
