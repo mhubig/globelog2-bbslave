@@ -32,7 +32,7 @@ RUN     pip install buildbot-slave
 RUN     pip install fabric
 RUN     mkdir -p /data
 ADD     ./slave /data/slave
-ADD     ./fabfile.py /data
+ADD     ./fabfile.py /data/
 
 ## expose ssh port
 EXPOSE  22
