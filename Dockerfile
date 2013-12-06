@@ -36,6 +36,7 @@ RUN     pip install buildbot-slave
 RUN     mkdir -p /data
 ADD     ./slave  /data/slave
 ADD     ./dotenv /data/slave/.env
+RUN     buildslave upgrade-slave /data/slave
 
 ## ADD supervisord scripts
 ADD     ./supervisord/ /etc/supervisor/conf.d/
