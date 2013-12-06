@@ -19,7 +19,6 @@ RUN     apt-get install -y -q chrpath
 RUN     apt-get install -y -q diffstat
 RUN     apt-get install -y -q python-dev
 RUN     apt-get install -y -q python-pip
-RUN     apt-get install -y -q openssh-server
 RUN     apt-get install -y -q build-essential
 
 ## add some folders
