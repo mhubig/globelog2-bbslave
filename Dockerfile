@@ -34,7 +34,6 @@ RUN     echo "root:root" | chpasswd
 RUN     pip install buildbot-slave
 RUN     mkdir -p /data
 ADD     ./slave  /data/slave
-RUN     buildslave upgrade-slave /data/slave
 
 ## ADD supervisord scripts
 ADD     ./supervisord/ /etc/supervisor/conf.d/
