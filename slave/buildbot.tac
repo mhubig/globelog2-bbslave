@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 # vi: set ft=python :
 
 import os
@@ -23,7 +23,7 @@ bbslave_maxdelay = 300
 bbslave_allow_shutdown = None
 
 ## bbmaster settings
-bbmaster_host = os.environ.get('BUILDBOT_HOST', 'ci.imko.de')
+bbmaster_host = os.environ.get('BUILDBOT_ADDR', 'ci.imko.de')
 bbmaster_port = int(os.environ.get('BUILDBOT_PORT', '9989'))
 bbmaster_pass = os.environ.get('BUILDBOT_PASS', 'geheim')
 
